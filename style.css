@@ -1,0 +1,149 @@
+@charset "utf-8";
+
+html, body {
+	background: #4b5541;
+	margin : 0;
+	padding : 0;
+}
+
+.clear {
+	clear : both;
+}
+
+/* GLOBAL NAVIGATION */
+#globalNav {
+	background : black url('http://cslabs.clarkson.edu/images/globalNavBg.jpg');
+	border-top : 1px solid #bbb;
+	border-bottom : 1px solid #bbb;
+	font : 0.8em Verdana, Geneva, sans-serif;
+	height : 30px;
+	width : 100%;
+}
+
+#csLabsTitle, #csLabsNav {
+	color : white;
+	margin : 5px 10px 0 10px;
+}
+
+#csLabsTitle {
+	float : left;
+}
+
+#csLabsNav {
+	float : right;
+}
+
+#csLabsNav ul {
+	list-style-type : none;
+	margin-top : 0;
+}
+
+#csLabsNav li {
+	display : inline;
+}
+
+#csLabsNav a:link, #csLabsNav a:visited {
+	color : white;
+	text-decoration : underline;
+}
+
+#csLabsNav a:hover, #csLabsNav a:active {
+	color : white;
+	text-decoration : none;
+}
+
+#csLabsNav a.current:link, #csLabsNav a.current:visited, #csLabsNav a.current:hover, #csLabsNav a.current:active {
+	color : white;
+	font-weight : bold;
+	text-decoration : none;
+}
+
+/* CONTAINER AND CONTENT */
+#container {
+	margin : 0 auto;
+	width : 90%;
+}
+
+	/* HEADER AND NAVIGATION */
+	#header {
+		margin-top : 10px;
+	}
+
+	#header a img {
+		border : 0;
+	}	
+
+	#header h1 {
+		color : white;
+		font : 2em Georgia, "Times New Roman", Times, serif;
+		letter-spacing : 0.05em;
+		margin-left : 10px;
+	}
+
+	#header #nav {
+		margin-top : -20px;
+		text-align : right;
+	}
+
+	#header #nav, #header #nav a {	
+		color : white;
+		font: 0.9em Verdana, Geneva, sans-serif;
+	}
+	
+	#header #nav a:link, #header #nav a:visited {
+		color : white;
+		text-decoration : underline;
+	}
+
+	#header #nav a:hover, #header #nav a:active {
+		color : white;
+		text-decoration : none;
+	}
+
+#content {
+	background : white;
+	border : 1px solid #ccc;
+	font : 0.8em black Verdana, Geneva, sans-serif;
+	margin-top : 5px;
+	padding : 10px;
+	padding-bottom : 0;
+}
+
+#content #right {
+	float : right;
+	margin-left : 15px;
+	text-align : center;
+	width : 390px;
+}
+
+#content img {
+	border : 1px solid black;
+	margin : 3px;
+}
+
+#content h1 {
+	font-size : 1.5em;
+	margin : 0;
+}
+
+#content p {
+	margin-top : 0;
+}
+
+/* FOOTER */
+#footer {
+	color : #ccc;
+	font : 0.6em Verdana, Helvetica, sans-serif;
+	margin-top : 2px;
+	text-align : center;
+}
+
+#footer a {
+	color : #ccc;
+	text-decoration : none;
+}
+
+#footer a:hover {
+	color : #eee;
+	text-decoration : none;
+}
