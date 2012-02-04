@@ -44,7 +44,7 @@ http://www.qkits.com/serv/qkits/diy/pages/QK145.asp
 1. Install phpmyadmin (http://www.phpmyadmin.net/home_page/downloads.php) on your linux server and enter hostname, username and password of database into 'test.py'
 
 2. place all files in the repository into '/var/www/' directory 
-NOTE: you will notice there is a highcharts.zip in this repository. this is the version we used to create the website but I would recommend downloading the most updated version (http://www.highcharts.com/)
+NOTE: We used HighCharts 2.1.6 for this project but I would recommend downloading the most updated version (http://www.highcharts.com/)
 
 Any questions? email tarselmj@clarkson.edu
 
