@@ -9,24 +9,29 @@ class sensor
 	private $x;
 	private $y;
 
+	#grabs the latest data from the database specified by time
 	private function latestData()
 	{
 		$result = mysql_query("SELECT * FROM `data` WHERE sensor_id =".$this->id." ORDER BY `time` DESC limit 1");
 		return mysql_fetch_object($result, 'data');
 	}
 	
+	#print Heat Mapping	with lateset data from database
 	public function hMapPrint()
 	{
 		echo "{x: ".($this->x*100).", y: ".($this->y*120).", count: ".$this->latestData()->temp."},";
 	}
 
+	#gathers graphing data to display with highcharts API
 	public function graph($lookBack, $skip)
 	{
 		echo "{";
 		echo "name: '$this->nickname',";
 		echo "data: [";
 		$i =0;
-
+	
+		#specifies the location in the MySQL database where to read temperature.
+		#Read test.py for more information on configuring database
 		$result = mysql_query("SELECT * FROM `data` WHERE `sensor_id`=".$this->id." AND `time` > DATE_ADD(NOW(), INTERVAL -".$lookBack." MINUTE)");
 		while($row = mysql_fetch_object($result, 'data'))
 		{
@@ -58,14 +63,15 @@ class data
 	}
 }
 
-function connect()
+function connect()#function to connect to MySQL database
 {
 	//host, username, passsword
 	mysql_connect('localhost', 'admin', 'password');
 	mysql_select_db("monitor");//database name
 }
 
-function sensors()
+function sensors()#specifies which sensor to grab data (temperature) from to
+#to display on the graph
 {
 	$res = array();
 	$result = mysql_query("SELECT * FROM sensors");
@@ -78,6 +84,7 @@ function sensors()
 	return $res;
 }
 
+#prints which sensor is reading the temperature to the graph
 function hMapPrint()
 {
 	$sensors = sensors();
@@ -115,7 +122,8 @@ function graphData($lookBack, $skip)
 				float:center;
 				width:600px;
 				height:400px;
-				background-image:url(/graphic.png);
+				background-image:url(/graphic.png);/*this is the background
+picture for the heatmapping picture at the bottom*/
 			}
 		</style>
 
@@ -188,6 +196,7 @@ function graphData($lookBack, $skip)
 					}
 				},
 				//minutes, skip
+				//will specifiy the x-axis of graph to change range
 				series: [
 					<?php 
 						$minutes = 60*24;
@@ -219,7 +228,7 @@ function graphData($lookBack, $skip)
 			
 		});
 	</script>
-	</head>
+	</head><!--Specifically check style.css for specific styles -->
 	<body>
 		<p><strong>Current temperatures:</strong> </p>
 		<div align="right">
