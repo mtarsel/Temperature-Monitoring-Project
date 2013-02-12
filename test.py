@@ -1,25 +1,28 @@
+import serial
+import os
+import time
+import sys
 import MySQLdb
-#insert hostname, username, password and database name below
-conn = MySQLdb.connect (host = "localhost", user = "admin", passwd = "password", db = "monitor")
-cursor = conn.cursor ()
 
-#declare number of sensors
-sensor = 2
-temp=60
+port = "/dev/ttyS0"
+ser = serial.Serial(port,2400,timeout=10)
+ser.readline()
 
-#database contains 2 tables - data and sensors
-command = "INSERT INTO `monitor`.`data` (`id`, `sensor_id`, `time`, `temp`) VALUES (NULL, '%d', CURRENT_TIMESTAMP, '%d');" % (sensor, temp, )
-#the database will place a timestamp when data is read in to produce a graph
-cursor.execute(command);
+def getData():
+        sensor = ser.readline().split()
+        print sensor
+        conn = MySQLdb.connect (host = "localhost", user = "user", passwd = "password", db = "db_name")
+        cursor = conn.cursor ()
 
-#within data table 'data' there are these rows below
-cursor.execute ("SELECT * FROM data")
-row = cursor.fetchone ()
-print "id",row[0]
-print "sensor",row[1]
-print "time",row[2]
-print "temp",row[3]
-cursor.close ()
-conn.close ()
+        command = "INSERT INTO `monitor`.`data` (`id`, `sensor_id`, `time`, `temp`) VALUES (NULL, '%s', CURRENT_TIMESTAMP, '%s');" % (sensor[0], sensor[1])
+        cursor.execute(command);
+        cursor.close ()
+        conn.close ()
+        return
+for i in range(5):
+        getData()
+
+ser.close()
+
 #getData for all sensors
 #writeToDataBase(sensor, temp)
